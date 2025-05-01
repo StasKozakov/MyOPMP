@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myopmp.ui.theme.MyOPMPTheme
@@ -42,6 +43,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingScreen(modifier: Modifier = Modifier) {
     var text by remember { mutableStateOf("Привіт, світ!") }
+
+    var clickCount by remember { mutableStateOf(0) }
+
+    // Визначаємо колір кнопки залежно від кількості кліків
+    val buttonColor = when {
+        clickCount >= 30 -> Color.Yellow
+        clickCount >= 20 -> Color.Green
+        clickCount >= 10 -> Color.Red
+        else -> MaterialTheme.colorScheme.primary
+    }
+
 
     Column(
         modifier = modifier
